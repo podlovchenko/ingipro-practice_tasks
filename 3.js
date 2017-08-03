@@ -3,15 +3,14 @@ const arr2 = [1, 5, 6, 7];
 
 function f(arr1, arr2) {
 	let arr = arr1.concat(arr2);
-	for (let i = 0; i < arr.length; i++) {
-		for (let j = i + 1; j < arr.length; j++) {
-			if (arr[i] == arr[j]) {
-				arr.splice(j, 1);
-				j--;
-			}
-		}
-	}
-	return arr;
+    let obj = {};
+	arr.forEach(function(item) {
+      obj[item] = true;
+    });
+    console.log(obj);
+	return Object.keys(obj).map(function(item) {
+      return +item;
+    });
 }
 
 console.log(f(arr1, arr2));
