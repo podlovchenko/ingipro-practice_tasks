@@ -3,8 +3,10 @@ var arr = [
 	{name: 'height', value: 20}
 ];
 
-var str = '{ "' + arr[0].name + '": ' + arr[0].value + ', "' + arr[1].name + '": ' + arr[1].value + ' }' ;
+var obj = {};
 
-str = JSON.parse(str);
+arr.forEach(function(item) {
+  obj[item.name] = item.value;
+});
 
-console.log(str);
+console.log(obj);
