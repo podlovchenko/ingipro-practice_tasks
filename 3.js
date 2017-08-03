@@ -5,7 +5,7 @@ function f(arr1, arr2) {
 	let arr = arr1.concat(arr2);
     let obj = {};
 	arr.forEach(item => obj[item] = true);
-	return Object.keys(obj).map(item => +item);
+	return Object.keys(obj).map(item => Number(item));
 }
 
 console.log(f(arr1, arr2));
