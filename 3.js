@@ -10,14 +10,13 @@ function chunkArrayInGroups(arr, size) {
   if (arr.length % size !== 0) {
     throw new Error("error!");
   }
+  
   let new_arr = [];
-  for (let i = 0; i < size; i++) {
-    let tmp = [];
-    for (let j = 0; j < arr.length / size; j++) {
-      tmp.push(arr[i * Math.ceil(arr.length / size) + j]);
-    } 
-    new_arr[i] = tmp.slice();
+  
+  for (let i = 0; i < arr.length; i += size) {
+    new_arr.push(arr.slice(i, i + size))
   }
+  
   return new_arr;
 }
 
