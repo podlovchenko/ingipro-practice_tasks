@@ -4,9 +4,7 @@
 */
 
 function myReplace(str, before, after) {
-  let iBefore = str.indexOf(before);
-  
-  if (iBefore === -1) {
+  if (str.indexOf(before) === -1) {
     throw new Error("error");
   }
   
@@ -16,7 +14,7 @@ function myReplace(str, before, after) {
     after = after[0].toLowerCase() + after.slice(1);
   }
   
-  return str.slice(0, iBefore) + after + str.slice(iBefore + before.length); 
+  return str.replace(before, after); 
 }
 
 console.log(myReplace("Let us get back to more Coding", "Coding", "algorithms"));
