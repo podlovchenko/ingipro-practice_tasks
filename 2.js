@@ -10,7 +10,7 @@ palindrome("А роза упала на лапу Азора"); // true
 
 function palindrome(str) {
   let tmp = str.replace(/\s*/g,"").toLowerCase();
-  return tmp.split('').reverse().join('') === tmp;
+  return !(tmp.localeCompare(tmp.split('').reverse().join('')));
 }
 
 console.log(palindrome("А роза упала на лапу Азора"));
