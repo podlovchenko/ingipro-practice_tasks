@@ -3,8 +3,8 @@ function getRandom() {
 }
 
 function pause(ms) {
-	var date = new Date();
-	var curDate = null;
+	const date = new Date();
+	let curDate = null;
 	do { 
 		curDate = new Date();
 	}
