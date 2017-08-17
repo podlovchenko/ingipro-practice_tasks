@@ -1,46 +1,45 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <body>
-<link href="4.css" rel="stylesheet">
-<script src="https://d3js.org/d3.v3.min.js"></script>
-
+</body>
+<script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
-var width = 300,
+'use strict';
+
+const width = 300,
     height = 300;
 
-var state = false;
+const line = d3.line()
+  .x(d => d[0])
+  .y(d => d[1])
+  .curve(d3.curveLinear);
 
-var color = "fill:red";
+d3.select("body")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height)
+  .on("mousedown", function() {
+  let data = [];
+  let path = d3.select(this)
+                .append("path")
+                .attr("stroke", changeColor())
+                .attr("stroke-width", 4)
+                .attr("fill", "none");
 
-var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-d3.select(window)
+  d3.select(this)
     .on("mousemove", function() {
-      if (state) {
-        svg.append("circle")
-        .attr("cx", d3.event.clientX)
-        .attr("cy", d3.event.clientY)
-        .attr("r", 5)
-        .attr("style", color)
-    }
-})
-    .on("mousedown", function() {
-      state = true;
-})
-    .on("mouseup", function() {
-      state = false;
-      color = changeColor();
+      data.push(d3.mouse(this));
+      path.attr("d", line(data));
+    })
+    .on("mouseup", () => d3.select(this).on("mousemove", null));
 });
 
-
 function changeColor() {
-  var r = Math.floor(Math.random() * 255);
-  var g = Math.floor(Math.random() * 255);
-  var b = Math.floor(Math.random() * 255);
-  return "fill:rgb(" + r + "," + g + "," + b + ")";
+  const r = Math.floor(Math.random() * 255);
+  const g = Math.floor(Math.random() * 255);
+  const b = Math.floor(Math.random() * 255);
+  return "rgb(" + r + "," + g + "," + b + ")";
 }
 
 </script>
